@@ -1,5 +1,34 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import { darken } from 'polished';
+import { FaSpinner } from 'react-icons/fa';
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  ${(props) =>
+    props.loading &&
+    css`
+      svg {
+        animation: ${rotate} 2s linear infinite;
+      }
+    `}
+`;
+
+export const Loading = styled(FaSpinner)`
+  margin-top: 300px;
+`;
 
 export const ProductList = styled.ul`
   display: grid;
@@ -61,7 +90,7 @@ export const ProductList = styled.ul`
       span {
         flex: 1;
         text-align: center;
-        font-weight: bold;''
+        font-weight: bold;
       }
     }
   }
